@@ -10,6 +10,7 @@ var spotify = new Spotify(keys.spotify);
 var twitter = new Twitter(keys.twitter);
 
 var action = process.argv[2];
+// var parameter = everything after process.argv[2]
 
 if (action === "my-tweets") {
     twitter.get('statuses/user_timeline', {screen_name: 'mcale017', count: 20}, function(error, tweets, response) {
@@ -25,7 +26,18 @@ if (action === "my-tweets") {
 }
 
 else if (action === "spotify-this-song") {
-
+    // still need to change it so that query is whatever I type in, not something that's already there
+    // also if query is empty, then default to so and so
+    spotify.search( {type: 'track', query: 'we like 2 party big bang', limit: 1}, function(error, response) {
+        if (!error) {
+            console.log(response.tracks.items[0].artists[0].name);
+            console.log(response.tracks.items[0].name);
+            console.log(response.tracks.items[0].preview_url);
+            console.log(response.tracks.items[0].album.name);
+        } else {
+            console.log(error);
+        }
+    })
 }
 
 else if (action === "movie-this") {
