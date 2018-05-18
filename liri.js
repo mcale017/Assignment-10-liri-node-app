@@ -1,3 +1,4 @@
+// Where the API keys are stored
 require("dotenv").config();
 
 // Requiring the keys for Twitter & Spotify APIs from keys.js which gets them from .env
@@ -42,10 +43,26 @@ switch(action) {
 function tweet() {
     twitter.get('statuses/user_timeline', {screen_name: 'mcale017', count: 20}, function(error, tweets, response) {
         if (!error) {
+            // First line that will get logged into log.txt when this function is run. It's not in the for loop because it's only needed at the top
+            fs.appendFile('log.txt', "=============== Twitter Log for " + Date() + " ===============\n", function(error) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log("Tweets have been logged into log.txt.");
+                }
+            })
+
             // making i < tweets.length takes care of any problems if there are less than 20 tweets from that user
             for (var i = 0; i < tweets.length; i++) {
-            console.log("Tweet: " + tweets[i].text
-                    + "\nDate: " + tweets[i].created_at + "\n");
+                // This will loop over every tweet and console log each tweet and its date
+                console.log("Tweet: " + tweets[i].text
+                        + "\nDate: " + tweets[i].created_at + "\n");
+                // This will instead of console logging, append them to the log.txt file
+                fs.appendFile('log.txt', "Tweet: " + tweets[i].text + "\nDate: " + tweets[i].created_at + "\n", function(error) {
+                    if (error) {
+                        console.log(error);
+                    }
+                })
             }
         } else {
             console.log(error);

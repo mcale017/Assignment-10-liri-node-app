@@ -1,0 +1,21 @@
+=============== Twitter Log for Thu May 17 2018 22:03:41 GMT-0500 (Central Daylight Time) ===============
+Tweet: Week 10 - node.js
+Date: Mon May 14 22:38:56 +0000 2018
+Tweet: Week 9 - Portfolio Update 1
+Date: Mon May 14 22:38:46 +0000 2018
+Tweet: Week 8 - Project 1
+Date: Mon May 14 22:37:58 +0000 2018
+Tweet: Week 7 - Firebase
+Date: Mon May 14 22:37:49 +0000 2018
+Tweet: Week 6 - API/AJAX
+Date: Mon May 14 22:37:39 +0000 2018
+Tweet: Week 5 - Advanced JS/jQuery
+Date: Mon May 14 22:37:29 +0000 2018
+Tweet: Week 4 - jQuery
+Date: Mon May 14 22:37:12 +0000 2018
+Tweet: Week 3 - Javascript
+Date: Mon May 14 22:37:07 +0000 2018
+Tweet: Week 2 - CSS
+Date: Mon May 14 22:36:32 +0000 2018
+Tweet: Week 1 - HTML
+Date: Mon May 14 22:36:23 +0000 2018
