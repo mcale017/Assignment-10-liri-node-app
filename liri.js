@@ -53,10 +53,12 @@ function tweet() {
     })
 }
 
-function song() {
-    // still need to change it so that query is whatever I type in, not something that's already there
-    // also if query is empty, then default to so and so
-    spotify.search( {type: 'track', query: variable, limit: 1}, function(error, response) {
+function song(value) {
+    // If song() is called without a parameter, it'll default to variable which is typed in as a command
+    if (value == null) {
+        value = variable;
+    }
+    spotify.search( {type: 'track', query: value, limit: 1}, function(error, response) {
         if (!error) {
             console.log("Artist(s): " + response.tracks.items[0].artists[0].name
                     + "\nSong: " + response.tracks.items[0].name
@@ -68,8 +70,12 @@ function song() {
     })
 }
 
-function movie() {
-    request("http://www.omdbapi.com/?t=" + variable + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
+function movie(value) {
+    // If movie() is called without a parameter, it'll default to variable which is typed in as a command
+    if (value == null) {
+        value = variable;
+    }
+    request("http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
         // If the request is successful (i.e. if the response status code is 200)
         if (!error && response.statusCode === 200) {
             console.log("Title: " + JSON.parse(body).Title
@@ -99,13 +105,13 @@ function liri() {
             if (randomAction === "my-tweets") {
                 tweet();
             }
-            // Need to figure out how to get randomVariable to go into song()
+            // randomVariable will be the given parameter for function song()
             else if (randomAction === "spotify-this-song") {
-                song();
+                song(randomVariable);
             }
-            // Same as above
+            // randomVariable will be the given parameter for function movie()
             else if (randomAction === "movie-this") {
-                movie();
+                movie(randomVariable);
             }
         }
     })
