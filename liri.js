@@ -1,23 +1,48 @@
 require("dotenv").config();
 
+// Requiring the keys for Twitter & Spotify APIs from keys.js which gets them from .env
 var keys = require("./keys.js");
 
+// Enabling the 3 npm's
 var request = require("request");
 var Spotify = require("node-spotify-api");
 var Twitter = require("twitter");
 
+// Constructor for each Spotify & Twitter objects (keys as their properties)
 var spotify = new Spotify(keys.spotify);
 var twitter = new Twitter(keys.twitter);
 
+// First parameter after 'node' and 'liri.js', we will use this parameter as the app's action
 var action = process.argv[2];
-// var parameter = everything after process.argv[2]
 
-if (action === "my-tweets") {
+// Second parameter that will be used as a song input for 'spotify-this-song' or as a movie input for 'movie-this'
+var variable = JSON.stringify(process.argv.slice(3));
+
+switch(action) {
+    case "my-tweets":
+        tweet();
+        break;
+    
+    case "spotify-this-song":
+        song();
+        break;
+
+    case "movie-this":
+        movie();
+        break;
+
+    case "do-what-it-says":
+        liri();
+        break;
+}
+
+function tweet() {
     twitter.get('statuses/user_timeline', {screen_name: 'mcale017', count: 20}, function(error, tweets, response) {
         if (!error) {
-            // only goes up to 10 for now, I only have 10 tweets
-            for (var i = 0; i < 10; i++) {
-            console.log(tweets[i].text + "\n");
+            // making i < tweets.length takes care of any problems if there are less than 20 tweets from that user
+            for (var i = 0; i < tweets.length; i++) {
+            console.log("Tweet: " + tweets[i].text
+                    + "\nDate: " + tweets[i].created_at + "\n");
             }
         } else {
             console.log(error);
@@ -25,25 +50,37 @@ if (action === "my-tweets") {
     })
 }
 
-else if (action === "spotify-this-song") {
+function song() {
     // still need to change it so that query is whatever I type in, not something that's already there
     // also if query is empty, then default to so and so
-    spotify.search( {type: 'track', query: 'we like 2 party big bang', limit: 1}, function(error, response) {
+    spotify.search( {type: 'track', query: variable, limit: 1}, function(error, response) {
         if (!error) {
-            console.log(response.tracks.items[0].artists[0].name);
-            console.log(response.tracks.items[0].name);
-            console.log(response.tracks.items[0].preview_url);
-            console.log(response.tracks.items[0].album.name);
+            console.log("Artist(s): " + response.tracks.items[0].artists[0].name
+                    + "\nSong: " + response.tracks.items[0].name
+                    + "\nPreview Link: " + response.tracks.items[0].preview_url
+                    + "\nAlbum: " + response.tracks.items[0].album.name);
         } else {
             console.log(error);
         }
     })
 }
 
-else if (action === "movie-this") {
-
+function movie() {
+    request("http://www.omdbapi.com/?t=" + variable + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
+        // If the request is successful (i.e. if the response status code is 200)
+        if (!error && response.statusCode === 200) {
+            console.log("Title: " + JSON.parse(body).Title
+                   + "\nYear: " + JSON.parse(body).Year
+                   + "\nIMDB Rating: " + JSON.parse(body).imdbRating
+                   + "\nRotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value
+                   + "\nCountry: " + JSON.parse(body).Country
+                   + "\nLanguage: " + JSON.parse(body).Language
+                   + "\nPlot: " + JSON.parse(body).Plot
+                   + "\nActors: " + JSON.parse(body).Actors + "\n");
+        }
+    })  
 }
 
-else if (action === "do-what-it-says") {
+function liri() {
 
 }
