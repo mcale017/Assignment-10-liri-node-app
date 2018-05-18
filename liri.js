@@ -3,6 +3,9 @@ require("dotenv").config();
 // Requiring the keys for Twitter & Spotify APIs from keys.js which gets them from .env
 var keys = require("./keys.js");
 
+// Enabling file system
+var fs = require("fs");
+
 // Enabling the 3 npm's
 var request = require("request");
 var Spotify = require("node-spotify-api");
@@ -82,5 +85,28 @@ function movie() {
 }
 
 function liri() {
+    // From the random.txt file
+    fs.readFile('random.txt', 'utf8', function(error, data) {
+        if (error) {
+            return console.log(error);
+        } else {
+            // Splitting the 2 strings separated by a comma
+            var randomAction = data.toString().split(", ")[0];
+            // This will include everything that was inside of ""
+            var randomVariable = data.toString().split(", ")[1];
 
+            // If randomAction is my-tweets, run the tweet() function
+            if (randomAction === "my-tweets") {
+                tweet();
+            }
+            // Need to figure out how to get randomVariable to go into song()
+            else if (randomAction === "spotify-this-song") {
+                song();
+            }
+            // Same as above
+            else if (randomAction === "movie-this") {
+                movie();
+            }
+        }
+    })
 }
