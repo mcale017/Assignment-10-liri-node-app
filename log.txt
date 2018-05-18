@@ -1,3 +1,5 @@
+This file will hold the entire logged data from running liri.js.
+
 =============== Twitter Log for Thu May 17 2018 22:03:41 GMT-0500 (Central Daylight Time) ===============
 Tweet: Week 10 - node.js
 Date: Mon May 14 22:38:56 +0000 2018
@@ -19,3 +21,19 @@ Tweet: Week 2 - CSS
 Date: Mon May 14 22:36:32 +0000 2018
 Tweet: Week 1 - HTML
 Date: Mon May 14 22:36:23 +0000 2018
+
+=============== Spotify Log for Thu May 17 2018 22:29:11 GMT-0500 (Central Daylight Time) ===============
+Artist(s): BTS
+Song: Save Me
+Preview Link: https://p.scdn.co/mp3-preview/618bec91ab9d73d09f1f0dca2212267da5302a47?cid=74c75ad0c05746329a2e71994742eede
+Album: The Most Beautiful Moment in Life: Young Forever
+
+=============== IMDB Log for Thu May 17 2018 22:29:36 GMT-0500 (Central Daylight Time) ===============
+Title: Inception
+Year: 2010
+IMDB Rating: 8.8
+Rotten Tomatoes Rating: 86%
+Country: USA, UK
+Language: English, Japanese, French
+Plot: A thief, who steals corporate secrets through the use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.
+Actors: Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy

@@ -22,11 +22,11 @@ var action = process.argv[2];
 // Second parameter that will be used as a song input for 'spotify-this-song' or as a movie input for 'movie-this'
 var variable = JSON.stringify(process.argv.slice(3));
 
-switch(action) {
+switch (action) {
     case "my-tweets":
         tweet();
         break;
-    
+
     case "spotify-this-song":
         song();
         break;
@@ -41,10 +41,10 @@ switch(action) {
 }
 
 function tweet() {
-    twitter.get('statuses/user_timeline', {screen_name: 'mcale017', count: 20}, function(error, tweets, response) {
+    twitter.get('statuses/user_timeline', { screen_name: 'mcale017', count: 20 }, function (error, tweets, response) {
         if (!error) {
             // First line that will get logged into log.txt when this function is run. It's not in the for loop because it's only needed at the top
-            fs.appendFile('log.txt', "=============== Twitter Log for " + Date() + " ===============\n", function(error) {
+            fs.appendFile('log.txt', "\n=============== Twitter Log for " + Date() + " ===============\n", function (error) {
                 if (error) {
                     console.log(error);
                 } else {
@@ -56,9 +56,10 @@ function tweet() {
             for (var i = 0; i < tweets.length; i++) {
                 // This will loop over every tweet and console log each tweet and its date
                 console.log("Tweet: " + tweets[i].text
-                        + "\nDate: " + tweets[i].created_at + "\n");
+                    + "\nDate: " + tweets[i].created_at + "\n");
+
                 // This will instead of console logging, append them to the log.txt file
-                fs.appendFile('log.txt', "Tweet: " + tweets[i].text + "\nDate: " + tweets[i].created_at + "\n", function(error) {
+                fs.appendFile('log.txt', "Tweet: " + tweets[i].text + "\nDate: " + tweets[i].created_at + "\n", function (error) {
                     if (error) {
                         console.log(error);
                     }
@@ -75,12 +76,22 @@ function song(value) {
     if (value == null) {
         value = variable;
     }
-    spotify.search( {type: 'track', query: value, limit: 1}, function(error, response) {
+    spotify.search({ type: 'track', query: value, limit: 1 }, function (error, response) {
         if (!error) {
+            // This will console log the song and its information
             console.log("Artist(s): " + response.tracks.items[0].artists[0].name
-                    + "\nSong: " + response.tracks.items[0].name
-                    + "\nPreview Link: " + response.tracks.items[0].preview_url
-                    + "\nAlbum: " + response.tracks.items[0].album.name);
+                + "\nSong: " + response.tracks.items[0].name
+                + "\nPreview Link: " + response.tracks.items[0].preview_url
+                + "\nAlbum: " + response.tracks.items[0].album.name + "\n");
+
+            // This will instead of console logging, append them to the log.txt file
+            fs.appendFile('log.txt', "\n=============== Spotify Log for " + Date() + " ===============\n" + "Artist(s): " + response.tracks.items[0].artists[0].name + "\nSong: " + response.tracks.items[0].name + "\nPreview Link: " + response.tracks.items[0].preview_url + "\nAlbum: " + response.tracks.items[0].album.name + "\n", function (error) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log("This song has been logged into log.txt.");
+                }
+            })
         } else {
             console.log(error);
         }
@@ -92,24 +103,34 @@ function movie(value) {
     if (value == null) {
         value = variable;
     }
-    request("http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
+    request("http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy", function (error, response, body) {
         // If the request is successful (i.e. if the response status code is 200)
         if (!error && response.statusCode === 200) {
+            // This will console log the movie and its information
             console.log("Title: " + JSON.parse(body).Title
-                   + "\nYear: " + JSON.parse(body).Year
-                   + "\nIMDB Rating: " + JSON.parse(body).imdbRating
-                   + "\nRotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value
-                   + "\nCountry: " + JSON.parse(body).Country
-                   + "\nLanguage: " + JSON.parse(body).Language
-                   + "\nPlot: " + JSON.parse(body).Plot
-                   + "\nActors: " + JSON.parse(body).Actors + "\n");
+                + "\nYear: " + JSON.parse(body).Year
+                + "\nIMDB Rating: " + JSON.parse(body).imdbRating
+                + "\nRotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value
+                + "\nCountry: " + JSON.parse(body).Country
+                + "\nLanguage: " + JSON.parse(body).Language
+                + "\nPlot: " + JSON.parse(body).Plot
+                + "\nActors: " + JSON.parse(body).Actors + "\n");
+
+            // This will instead of console logging, append them to the log.txt file
+            fs.appendFile('log.txt', "\n=============== IMDB Log for " + Date() + " ===============\n" + "Title: " + JSON.parse(body).Title + "\nYear: " + JSON.parse(body).Year + "\nIMDB Rating: " + JSON.parse(body).imdbRating + "\nRotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value + "\nCountry: " + JSON.parse(body).Country + "\nLanguage: " + JSON.parse(body).Language + "\nPlot: " + JSON.parse(body).Plot + "\nActors: " + JSON.parse(body).Actors + "\n", function (error) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log("This movie has been logged into log.txt.");
+                }
+            })
         }
-    })  
+    })
 }
 
 function liri() {
     // From the random.txt file
-    fs.readFile('random.txt', 'utf8', function(error, data) {
+    fs.readFile('random.txt', 'utf8', function (error, data) {
         if (error) {
             return console.log(error);
         } else {
