@@ -20,8 +20,9 @@ var twitter = new Twitter(keys.twitter);
 var action = process.argv[2];
 
 // Second parameter that will be used as a song input for 'spotify-this-song' or as a movie input for 'movie-this'
-var variable = JSON.stringify(process.argv.slice(3));
+var variable = process.argv.slice(3);
 
+// Switch statements for each action
 switch (action) {
     case "my-tweets":
         tweet();
@@ -73,8 +74,16 @@ function tweet() {
 
 function song(value) {
     // If song() is called without a parameter, it'll default to variable which is typed in as a command
-    if (value == null) {
-        value = variable;
+    if (value == null) {      
+        // If no parameters were given after spotify-this-song action
+        if (variable.length === 0) {
+            // Then have value equal "I want it that way" & using JSON.stringify to make it easier to send data to the web server
+            value = JSON.stringify("I want it that way");
+        }
+        else {
+            // JSON.stringify variable to make it easier to send data to the web server
+            value = JSON.stringify(variable);
+        }
     }
     spotify.search({ type: 'track', query: value, limit: 1 }, function (error, response) {
         if (!error) {
@@ -101,7 +110,15 @@ function song(value) {
 function movie(value) {
     // If movie() is called without a parameter, it'll default to variable which is typed in as a command
     if (value == null) {
-        value = variable;
+        // If no parameters were given after spotify-this-song action
+        if (variable.length === 0) {
+            // Then have value equal "Ready Player One"
+            value = "Ready Player One";
+        }
+        else {
+            // Make the array of strings into a single string
+            value = variable.join(" ");
+        }
     }
     request("http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy", function (error, response, body) {
         // If the request is successful (i.e. if the response status code is 200)

@@ -37,3 +37,13 @@ Country: USA, UK
 Language: English, Japanese, French
 Plot: A thief, who steals corporate secrets through the use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.
 Actors: Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy
+
+=============== IMDB Log for Sat May 19 2018 01:13:47 GMT-0500 (Central Daylight Time) ===============
+Title: Rogue One: A Star Wars Story
+Year: 2016
+IMDB Rating: 7.8
+Rotten Tomatoes Rating: 85%
+Country: USA
+Language: English
+Plot: The daughter of an Imperial scientist joins the Rebel Alliance in a risky move to steal the Death Star plans.
+Actors: Felicity Jones, Diego Luna, Alan Tudyk, Donnie Yen
