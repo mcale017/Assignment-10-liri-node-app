@@ -47,3 +47,29 @@ Country: USA
 Language: English
 Plot: The daughter of an Imperial scientist joins the Rebel Alliance in a risky move to steal the Death Star plans.
 Actors: Felicity Jones, Diego Luna, Alan Tudyk, Donnie Yen
+
+=============== IMDB Log for Sat May 19 2018 12:52:52 GMT-0500 (Central Daylight Time) ===============
+Title: Avengers: Infinity War
+Year: 2018
+IMDB Rating: 9.0
+Rotten Tomatoes Rating: 84%
+Country: USA
+Language: English
+Plot: The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.
+Actors: Robert Downey Jr., Chris Hemsworth, Mark Ruffalo, Chris Evans
+
+=============== IMDB Log for Sat May 19 2018 12:53:12 GMT-0500 (Central Daylight Time) ===============
+Title: A Quiet Place
+Year: 2018
+IMDB Rating: 8.1
+Rotten Tomatoes Rating: 95%
+Country: USA
+Language: English, American Sign Language
+Plot: A family is forced to live in silence while hiding from creatures that hunt by sound.
+Actors: Emily Blunt, John Krasinski, Millicent Simmonds, Noah Jupe
+
+=============== Spotify Log for Sat May 19 2018 12:53:32 GMT-0500 (Central Daylight Time) ===============
+Artist(s): Backstreet Boys
+Song: I Want It That Way
+Preview Link: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=74c75ad0c05746329a2e71994742eede
+Album: The Hits--Chapter One
